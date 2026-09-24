@@ -1,6 +1,7 @@
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Container, SectionHeading, Badge } from '../components/ui'
+import { PropertyCard } from '../components/PropertyCard'
 import { demoAgents } from '../data/demo'
 import { demoProperties } from '../data/demo'
 

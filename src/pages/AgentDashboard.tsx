@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Plus, ArrowUpRight, Home, MessageCircle, Eye, Settings } from 'lucide-react'
+import { Plus, ArrowUpRight, Home, MessageCircle, Eye } from 'lucide-react'
 import { Container, Button } from '../components/ui'
 import { demoProperties } from '../data/demo'
 
