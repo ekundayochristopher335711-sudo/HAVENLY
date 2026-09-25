@@ -1,33 +1,41 @@
-import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
-import { useAuth } from '../contexts/AuthContext'
+import { useCallback, useEffect, useState } from 'react'
+
+const STORAGE_KEY = 'havenly:favorites'
+
+function readFavorites(): string[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    const parsed: unknown = raw ? JSON.parse(raw) : []
+    return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === 'string') : []
+  } catch {
+    return []
+  }
+}
 
 export function useFavorites() {
-  const { user } = useAuth()
-  const [favorites, setFavorites] = useState<string[]>([])
+  const [favorites, setFavorites] = useState<string[]>(readFavorites)
 
   useEffect(() => {
-    if (!user || !supabase) {
-      setFavorites([])
-      return
+    function onStorage(event: StorageEvent) {
+      if (event.key === STORAGE_KEY) setFavorites(readFavorites())
     }
-    supabase.from('favorites').select('property_id').eq('user_id', user.id).then(({ data }) => {
-      setFavorites((data ?? []).map((item) => item.property_id))
-    })
-  }, [user])
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
 
-  async function toggle(propertyId: string) {
-    if (!user || !supabase) return false
-    const exists = favorites.includes(propertyId)
-    if (exists) {
-      await supabase.from('favorites').delete().eq('user_id', user.id).eq('property_id', propertyId)
-      setFavorites((current) => current.filter((id) => id !== propertyId))
-    } else {
-      await supabase.from('favorites').insert({ user_id: user.id, property_id: propertyId })
-      setFavorites((current) => [...current, propertyId])
-    }
-    return !exists
-  }
+  const toggle = useCallback((propertyId: string) => {
+    setFavorites((current) => {
+      const next = current.includes(propertyId)
+        ? current.filter((id) => id !== propertyId)
+        : [...current, propertyId]
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      } catch {
+        // Storage may be unavailable (private mode) — state still updates for this session.
+      }
+      return next
+    })
+  }, [])
 
   return { favorites, toggle }
 }

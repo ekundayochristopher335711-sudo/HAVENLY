@@ -1,17 +1,6 @@
 export type ListingType = 'sale' | 'rent'
 export type PropertyType = 'house' | 'apartment' | 'villa' | 'townhouse' | 'penthouse' | 'land'
-export type PropertyStatus = 'draft' | 'pending' | 'published' | 'rejected' | 'archived'
-export type UserRole = 'user' | 'agent' | 'admin'
-
-export interface PropertyImage {
-  id: string
-  property_id: string
-  storage_path: string
-  public_url: string
-  alt_text: string | null
-  sort_order: number
-  is_cover: boolean
-}
+export type SortOption = 'newest' | 'price-low' | 'price-high'
 
 export interface Agent {
   id: string
@@ -32,7 +21,6 @@ export interface Property {
   description: string
   listing_type: ListingType
   property_type: PropertyType
-  status: PropertyStatus
   price: number
   currency: string
   bedrooms: number
@@ -54,10 +42,12 @@ export interface Property {
   created_at: string
 }
 
-export interface Profile {
-  id: string
-  full_name: string | null
-  phone: string | null
-  avatar_url: string | null
-  role: UserRole
+export interface PropertyFilters {
+  listing: ListingType
+  city: string
+  type: PropertyType | ''
+  minPrice: string
+  maxPrice: string
+  beds: string
+  sort: SortOption
 }

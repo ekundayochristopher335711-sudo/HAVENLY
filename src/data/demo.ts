@@ -1,4 +1,4 @@
-import type { Agent, Property } from '../types'
+﻿import type { Agent, Property } from '../types'
 
 export const demoAgents: Agent[] = [
   {
@@ -42,7 +42,6 @@ export const demoProperties: Property[] = [
     description: 'A light-filled contemporary residence designed around indoor-outdoor living, with calm material choices and generous entertaining spaces.',
     listing_type: 'sale',
     property_type: 'villa',
-    status: 'published',
     price: 185000000,
     currency: '₦',
     bedrooms: 5,
@@ -70,7 +69,6 @@ export const demoProperties: Property[] = [
     description: 'An elegant family home with expansive glazing, landscaped grounds and carefully considered proportions.',
     listing_type: 'sale',
     property_type: 'house',
-    status: 'published',
     price: 125000000,
     currency: '₦',
     bedrooms: 4,
@@ -98,7 +96,6 @@ export const demoProperties: Property[] = [
     description: 'A refined city apartment with warm textures, open living areas and a quiet view over mature trees.',
     listing_type: 'rent',
     property_type: 'apartment',
-    status: 'published',
     price: 8500000,
     currency: '₦',
     bedrooms: 3,
@@ -126,7 +123,6 @@ export const demoProperties: Property[] = [
     description: 'A high-floor residence with panoramic water views, generous terraces and a dramatic open-plan living space.',
     listing_type: 'sale',
     property_type: 'penthouse',
-    status: 'published',
     price: 290000000,
     currency: '₦',
     bedrooms: 4,
@@ -154,7 +150,6 @@ export const demoProperties: Property[] = [
     description: 'A warm modern home balancing privacy and communal living with a landscaped courtyard at its centre.',
     listing_type: 'rent',
     property_type: 'house',
-    status: 'published',
     price: 6500000,
     currency: '₦',
     bedrooms: 4,
@@ -182,7 +177,6 @@ export const demoProperties: Property[] = [
     description: 'A compact, beautifully planned townhouse for city living, with natural light across three levels.',
     listing_type: 'sale',
     property_type: 'townhouse',
-    status: 'published',
     price: 78000000,
     currency: '₦',
     bedrooms: 3,

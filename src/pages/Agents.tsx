@@ -1,11 +1,13 @@
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Container, SectionHeading, Badge } from '../components/ui'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { PropertyCard } from '../components/PropertyCard'
 import { demoAgents } from '../data/demo'
 import { demoProperties } from '../data/demo'
 
 export function Agents() {
+  usePageMeta('Our agents — HAVENLY', 'Meet the local experts behind HAVENLY listings.')
   return (
     <main className="pt-20">
       <section className="bg-ink py-24 text-white sm:py-32"><Container><p className="text-[11px] font-bold uppercase tracking-[.2em] text-white/40">The people behind the homes</p><h1 className="mt-6 max-w-4xl font-display text-6xl leading-[.9] tracking-[-.04em] sm:text-8xl">Meet the people<br /><i className="text-white/60">who know the place.</i></h1></Container></section>
@@ -16,8 +18,9 @@ export function Agents() {
 }
 
 export function AgentProfile() {
-  const id = location.pathname.split('/').pop()
+  const { id } = useParams()
   const agent = demoAgents.find((a) => a.id === id) ?? demoAgents[0]
+  usePageMeta(`${agent.name} — HAVENLY`, agent.bio)
   const listings = demoProperties.filter((p) => p.agent?.id === agent.id)
   return <main className="pt-20"><section className="bg-ink py-20 text-white sm:py-28"><Container><div className="grid items-center gap-10 md:grid-cols-[220px_1fr]"><img src={agent.avatar} className="size-52 rounded-[28px] object-cover" alt={agent.name} /><div><div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[.15em] text-white/45">{agent.company}{agent.verified && <CheckCircle2 size={15} />}</div><h1 className="mt-4 font-display text-6xl tracking-[-.04em] sm:text-8xl">{agent.name}</h1><p className="mt-5 max-w-xl text-white/55">{agent.bio}</p></div></div></Container></section><section className="py-20"><Container><SectionHeading eyebrow="Listings" title="Homes represented." /><div className="mt-12 grid gap-7 md:grid-cols-3">{listings.map((p) => <PropertyCard key={p.id} property={p} />)}</div></Container></section></main>
 }

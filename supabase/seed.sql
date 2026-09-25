@@ -1,3 +1,0 @@
--- Optional seed data.
--- Create users through Supabase Auth first, then create corresponding profiles/agents.
--- The frontend ships with a polished demo dataset so HAVENLY is immediately previewable.
