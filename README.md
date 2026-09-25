@@ -8,7 +8,7 @@ Browse curated homes for sale and rent, filter them the way a real buyer would, 
 
 ## Live demo
 
-Deployed on Vercel — every push to `main` triggers a fresh production build. (Add your deployment URL to the repository's *About → Website* field so it appears here and on the repo card.)
+**[havenly-six.vercel.app](https://havenly-six.vercel.app)** — deployed on Vercel; every push to `main` triggers a fresh production build.
 
 <!-- Screenshots: capture Home, Properties (filters), Property detail and Saved homes at desktop + mobile widths, save them to docs/, and paste the images below. -->
 
